@@ -13,7 +13,13 @@ public class WxConstans {
 	/**
 	 * 获取access_token接口调用
 	 */
-	public static final String GET_ACCESS_TOKEN = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET";
+	public static final String ACCESS_TOKEN_URL = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=APPID&secret=APPSECRET";
+	
+	/**
+	 * 新增临时素材URL 媒体文件在微信后台保存时间为3天，即3天后media_id失效。
+	 */
+	public static final String TEMP_UPLOAD_URL = "https://api.weixin.qq.com/cgi-bin/media/upload?access_token=ACCESS_TOKEN&type=TYPE";
+	
 	/**
 	 *  ACCESS_TOKEN 
 	 */

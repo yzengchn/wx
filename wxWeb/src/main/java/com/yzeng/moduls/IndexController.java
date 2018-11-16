@@ -8,12 +8,15 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.yzeng.constans.WxConstans;
 import com.yzeng.moduls.message.MessageService;
+import com.yzeng.moduls.wxapi.WxApiService;
 import com.yzeng.utils.http.ServletResponseUtil;
 import com.yzeng.utils.redis.RedisUtil;
 import com.yzeng.utils.wx.MessageUtil;
@@ -30,6 +33,8 @@ public class IndexController {
 	private RedisUtil redisUtil;
 	@Resource
 	private MessageService msgService;
+	@Autowired
+	private WxApiService wxApiService;
 
 	@RequestMapping(value = "checkwx", method = RequestMethod.GET)
 	public void indexGet(HttpServletRequest request, HttpServletResponse response) {
@@ -59,7 +64,14 @@ public class IndexController {
 		
 		ServletResponseUtil.print(message, response);
 	}
-
+	
+	
+	@RequestMapping(value="index")
+	@ResponseBody
+	public String getTest() {
+		return wxApiService.getAccessToken();
+	}
+	
 	@ApiOperation(value = "用户注册", notes = "根据User对象创建用户")
 	@ApiImplicitParam(name = "user", value = "用户详细实体user", required = true, dataType = "User")
 	@RequestMapping(value = "/register", method = RequestMethod.GET)

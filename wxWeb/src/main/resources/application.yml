@@ -18,7 +18,12 @@ spring:
         min-idle: 0
 jasypt:
   encryptor:
-    password: yzblog     
+    password: yzblog  
+    
+#是否激活 swagger true or false
+swagger:
+  is:
+    enable: false   
           
     
   

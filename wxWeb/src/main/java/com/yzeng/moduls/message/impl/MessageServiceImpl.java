@@ -4,14 +4,19 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.yzeng.constans.WxConstans;
 import com.yzeng.moduls.message.MessageService;
+import com.yzeng.utils.wx.ImageMessageUtil;
 import com.yzeng.utils.wx.TextMessageUtil;
 
 @Service
 public class MessageServiceImpl implements MessageService {
+	
+	@Autowired
+	private ImageMessageUtil imageMessageUtil; 
 
 	@Override
 	public String msgHandler(Map<String, String> map) {
@@ -26,6 +31,7 @@ public class MessageServiceImpl implements MessageService {
 			message = EventMsgHandler(map);
 			break;
 		default:
+			TextMessageUtil.initMessage(map.get("FromUserName"), map.get("ToUserName"));
 			break;
 		}
 		return message;
@@ -67,7 +73,7 @@ public class MessageServiceImpl implements MessageService {
 		String FromUserName = map.get("FromUserName");
 		String Content = map.get("Content");
 		if("图片".equals(Content)) {
-			return TextMessageUtil.initMessage(FromUserName, ToUserName);
+			return imageMessageUtil.initMessage(FromUserName, ToUserName);
 		}else {
 			return TextMessageUtil.diyMessage(FromUserName, ToUserName, Content);
 		}

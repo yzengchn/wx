@@ -1,5 +1,6 @@
 package com.yzeng.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -28,10 +29,14 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableSwagger2
 public class Swagger2 {
-
+	
+	@Value("${swagger.is.enable}")
+	private boolean swagger_is_enable;
+	
 	@Bean
     public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)
+        		.enable(swagger_is_enable)
                 .apiInfo(apiInfo())
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.yzeng.moduls"))
@@ -42,9 +47,9 @@ public class Swagger2 {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("RESTful APIs")
-                .description("")
+                .description("更多技术资料请访问：<a href='https://www.yzblog.xyz/'>我的博客</a>")
                 .termsOfServiceUrl("https://yzblog.xyz/")
-                .contact("yzengchn@163.com")
+                .contact("@Email：yzengchn@163.com")
                 .version("9.9")
                 .build();
     }
