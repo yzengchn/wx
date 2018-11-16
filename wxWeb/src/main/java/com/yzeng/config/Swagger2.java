@@ -34,7 +34,7 @@ public class Swagger2 {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.yzeng.charme.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.yzeng.moduls"))
                 .paths(PathSelectors.any())
                 .build();
     }
