@@ -9,4 +9,6 @@ package com.yzeng.constans;
  */
 public class SysConstans {
 	public static final String WX_CONFIG_FILE = "config/wx.properties";
+	
+	public static final String CONFIG_FILE_CIPHER = "yzblog";
 }

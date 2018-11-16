@@ -67,8 +67,6 @@ public class IndexController {
 		redisUtil.set("test.set", "sdadsdsa大大", 8);
 		String object = (String) redisUtil.get("test.set");
 		System.out.println(object);
-		String handler = msgService.msgHandler(null);
-		System.out.println("Handler" + handler);
 		System.out.println("appid" + WxConstans.APP_ID);
 		return "index";
 	}

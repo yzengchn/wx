@@ -7,9 +7,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
+
+import com.yzeng.constans.SysConstans;
 
 /**
  * 读取属性文件
@@ -19,6 +23,7 @@ import org.springframework.core.io.support.ResourcePatternResolver;
  * @since  [产品/模块版本]
  */
 public class PropertiesLoader {
+	
 private static Map<String, Properties> propertiesMap = new HashMap<String, Properties>();
     
     public static String read(String fileName, String key)
@@ -36,9 +41,30 @@ private static Map<String, Properties> propertiesMap = new HashMap<String, Prope
     
     public static String getKey(String fileName,String key)
     {
-        return read(fileName, key);
+    	//return read(fileName, key);
+    	
+    	String ciphertext = read(fileName, key);
+        StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
+        encryptor.setPassword(SysConstans.CONFIG_FILE_CIPHER);
+        return encryptor.decrypt(ciphertext);
+
     }
     
+    
+    /*public static void main(String[] args) {
+    	//解密
+    	StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
+        encryptor.setPassword(SysConstans.CONFIG_FILE_CIPHER);
+        String decrypt = encryptor.decrypt("OX8xs/Tv36zrI7goTM9hXxssZAEOolSihTluMIepnag=");
+        
+        // 默认加密/解密算法是 PBEWithMD5AndDES
+        StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
+        encryptor.setPassword(SysConstans.CONFIG_FILE_CIPHER);
+        return encryptor.encrypt("localhost");
+
+
+        System.out.println(decrypt);
+	}*/
     /**
      * 描述：加载属性文件
      * @param fileName
