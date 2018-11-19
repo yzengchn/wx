@@ -1,4 +1,12 @@
 spring:
+  application:
+    name: charMe
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://139.199.86.201:3306/wx?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true
+    username: root
+    password: ENC(vj6RHAkuT7UvXf5GiKKVdA==)
+    type: com.alibaba.druid.pool.DruidDataSource
   redis:
     #数据库索引
     database: 0 
@@ -16,6 +24,10 @@ spring:
         max-idle: 5
         #最小空闲连接数
         min-idle: 0
+  
+mybatis:
+  mapper-locations: classpath*:com/yzeng/mapper/**/*Mapper.xml
+  type-aliases-package: com.yzeng.entity    
 jasypt:
   encryptor:
     password: yzblog  
@@ -23,7 +35,7 @@ jasypt:
 #是否激活 swagger true or false
 swagger:
   is:
-    enable: false   
+    enable: true   
           
     
   

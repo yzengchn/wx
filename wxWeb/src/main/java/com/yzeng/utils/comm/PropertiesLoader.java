@@ -51,7 +51,7 @@ private static Map<String, Properties> propertiesMap = new HashMap<String, Prope
     }
     
     
-    /*public static void main(String[] args) {
+   /* public static void main(String[] args) {
     	//解密
     	StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
         encryptor.setPassword(SysConstans.CONFIG_FILE_CIPHER);
@@ -60,10 +60,10 @@ private static Map<String, Properties> propertiesMap = new HashMap<String, Prope
         // 默认加密/解密算法是 PBEWithMD5AndDES
         StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
         encryptor.setPassword(SysConstans.CONFIG_FILE_CIPHER);
-        return encryptor.encrypt("localhost");
+        String encry = encryptor.encrypt("root");
 
 
-        System.out.println(decrypt);
+        System.out.println(encry);
 	}*/
     /**
      * 描述：加载属性文件
