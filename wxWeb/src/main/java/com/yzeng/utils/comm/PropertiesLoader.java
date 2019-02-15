@@ -51,20 +51,24 @@ private static Map<String, Properties> propertiesMap = new HashMap<String, Prope
     }
     
     
-   /* public static void main(String[] args) {
-    	//解密
+    public static void main(String[] args) {
+    	/*//解密jdbc:mysql://139.199.86.201/charself?characterEncoding=utf-8&useSSL=false
     	StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
         encryptor.setPassword(SysConstans.CONFIG_FILE_CIPHER);
-        String decrypt = encryptor.decrypt("OX8xs/Tv36zrI7goTM9hXxssZAEOolSihTluMIepnag=");
+        //String decrypt = encryptor.decrypt("xFYrS41Z+hZQUu5Ar4NLMs5FgIFehTtXzlh1zkLsgXK2QchvGpdUIbSYUUwJf1gmZ/gWTJRfepAIraNOqyaV3Z09gHwI/9bv1ZtSvQnqZw0g2kIpibaEiQ==");
+        String decrypt = encryptor.decrypt("vj6RHAkuT7UvXf5GiKKVdA==");
+        System.out.println(decrypt);*/
         
         // 默认加密/解密算法是 PBEWithMD5AndDES
-        StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
-        encryptor.setPassword(SysConstans.CONFIG_FILE_CIPHER);
-        String encry = encryptor.encrypt("root");
-
-
+        StandardPBEStringEncryptor encryptor1 = new StandardPBEStringEncryptor();
+        encryptor1.setPassword(SysConstans.CONFIG_FILE_CIPHER);
+        //String encry = encryptor1.encrypt("jdbc:mysql://123.207.236.49/blog?characterEncoding=utf-8&useSSL=false");
+        //String encry = encryptor1.encrypt("jdbc:mysql://123.207.236.49/yzblog_user?characterEncoding=utf-8&useSSL=false");
+        String encry = encryptor1.encrypt("https://git.dev.tencent.com/yzcod/yzblog-config.git");
         System.out.println(encry);
-	}*/
+
+
+	}
     /**
      * 描述：加载属性文件
      * @param fileName

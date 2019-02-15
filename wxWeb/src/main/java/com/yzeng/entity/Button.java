@@ -2,7 +2,11 @@ package com.yzeng.entity;
 
 import java.util.List;
 
+import javax.validation.constraints.NotNull;
+
 import com.alibaba.fastjson.annotation.JSONField;
+
+import io.swagger.annotations.ApiModelProperty;
 
 /**
  * 微信菜单按钮(一级按钮)
@@ -22,6 +26,8 @@ public class Button {
 	/**
 	 * 类型：click点击推事件  view跳转URL,view表示网页类型，click表示点击类型	
 	 */
+	@NotNull(message = "按钮类型不能为空")
+    @ApiModelProperty("按钮类型。click点击推事件 view跳转URL,view表示网页类型，click表示点击类型")
 	private String type;
 	/**
 	 * 菜单KEY值，用于消息接口推送

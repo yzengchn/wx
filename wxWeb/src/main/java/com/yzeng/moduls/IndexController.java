@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -24,6 +25,8 @@ import com.yzeng.utils.wx.SignUtil;
 
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
+import xyz.yzblog.weather.client.WeatherClient;
+import xyz.yzblog.weather.vo.WeatherResBodyVO;
 
 @Controller
 public class IndexController {
@@ -35,6 +38,8 @@ public class IndexController {
 	private MessageService msgService;
 	@Autowired
 	private WxApiService wxApiService;
+//	@Resource
+//	private WeatherClient weatherClient;
 
 	@RequestMapping(value = "checkwx", method = RequestMethod.GET)
 	public void indexGet(HttpServletRequest request, HttpServletResponse response) {
@@ -81,5 +86,14 @@ public class IndexController {
 		System.out.println(object);
 		System.out.println("appid" + WxConstans.APP_ID);
 		return "index";
+	}
+	
+	@GetMapping("/weather")
+	@ResponseBody
+	public WeatherResBodyVO getWeather() {
+		WeatherResBodyVO vo = new WeatherResBodyVO();
+		vo.setStatus("OK");
+		vo.setDesc("成功");
+		return vo; 
 	}
 }

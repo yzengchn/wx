@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.yzeng.constans.WxConstans;
 import com.yzeng.moduls.message.MessageService;
+import com.yzeng.moduls.message.handler.MsgHandlerFactory;
 import com.yzeng.utils.wx.ImageMessageUtil;
 import com.yzeng.utils.wx.TextMessageUtil;
 
@@ -23,7 +24,7 @@ public class MessageServiceImpl implements MessageService {
 		//SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		String message = "";
 		String msgType = map.get("MsgType");
-		switch (msgType) {
+		/*switch (msgType) {
 		case "text":
 			message = textMsgHandler(map);
 			break;
@@ -33,7 +34,10 @@ public class MessageServiceImpl implements MessageService {
 		default:
 			TextMessageUtil.initMessage(map.get("FromUserName"), map.get("ToUserName"));
 			break;
-		}
+		}*/
+		
+		message = MsgHandlerFactory.getInstance().creator(msgType).genMsg(map);
+		
 		return message;
 	}
 	
